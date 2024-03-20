@@ -20,7 +20,7 @@ const petSchema = new schema(
 
     age: {
       type: String,
-      required: false,
+      required: true,
     },
 
     color: String,
