@@ -12,9 +12,7 @@ app.set('view engine', 'ejs');
 const port = process.env.PORT || 3000;
 
 // Construct the MongoDB URI
-const dbUsername = encodeURIComponent(process.env.DB_USERNAME);
-const dbPassword = encodeURIComponent(process.env.DB_PASSWORD);
-const dbUri = process.env.DB_URI.replace('<username>', dbUsername).replace('<password>', dbPassword);
+const dbUri = process.env.DB_URI
 
 mongoose.connect(dbUri)
     .then(() => console.log('MongoDB connection successful'))
