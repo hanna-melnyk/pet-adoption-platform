@@ -27,6 +27,21 @@ const authRoutes = require('./config/authRoutes');
 app.use(authRoutes);
 
 
+
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
 });
+
+app.use(express.static(`${__dirname}/public`));
+app.use(express.urlencoded({ extended: true }));
+
+const getRoute = require("./config/routes");
+const petRoute = require("./config/petRoutes");
+
+app.use("/", getRoute);
+app.use('/home', petRoute)
+
+
+
+
+
