@@ -14,6 +14,7 @@ const petSchema = new schema(
       type: String,
       required: true,
       enum: ["cats", "dogs", "parrots", "fish", "insects", "other pets"],
+      index: true,
     },
 
     breed: String,
@@ -21,9 +22,13 @@ const petSchema = new schema(
     age: {
       type: String,
       required: true,
+      index: true,
     },
 
-    color: String,
+    color: {
+      type: String,
+      index: true,
+    },
 
     gender: {
       type: String,
@@ -46,7 +51,10 @@ const petSchema = new schema(
       ref: "User",
     },
   },
-    { timestamps: true });
+  { timestamps: true }
+);
+
+petSchema.index({ species: "text", color: "text" });
   
 const Pet = mongoose.model('Pet', petSchema)
     
