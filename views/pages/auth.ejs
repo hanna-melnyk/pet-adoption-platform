@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Registration Form</title>
+    <style>    </style>
+</head>
+<body>
+
+<div id="auth-container">
+    <!-- Login Form -->
+    <form id="login-form" class="auth-form">
+        <input type="text" id="login-username" placeholder="Username/Email">
+        <input type="password" id="login-password" placeholder="Password">
+        <button type="button" id="login-button">Sign In</button>
+        <p>New to the website? <span id="toggle-to-register">Click register here</span></p>
+    </form>
+
+    <!-- Registration Form -->
+    <form id="register-form" class="auth-form" style="display:none;">
+        <input type="text" id="register-username" placeholder="Username">
+        <input type="email" id="register-email" placeholder="Email">
+        <input type="password" id="register-password" placeholder="Password">
+        <input type="password" id="register-confirm-password" placeholder="Confirm Password">
+        <button type="button" id="register-button">Register</button>
+        <p>Already have an account? <span id="toggle-to-login">Sign in</span></p>
+    </form>
+</div>
+
+<script>
+    // JavaScript for toggling between forms
+    document.getElementById("toggle-to-register").onclick = function() {
+        document.getElementById("login-form").style.display = "none";
+        document.getElementById("register-form").style.display = "block";
+    };
+
+    document.getElementById("toggle-to-login").onclick = function() {
+        document.getElementById("login-form").style.display = "block";
+        document.getElementById("register-form").style.display = "none";
+    };
+</script>
+
+</body>
+</html>
