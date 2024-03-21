@@ -17,8 +17,8 @@ const getAllPets = (req, res) => {
     
       pet
         .find(filter)
-        .then((pets) => {
-          res.render("pages/home", { pets });
+        .then((result) => {          
+          res.render("pages/home", { pets : result});
         })
         .catch((err) => console.log(err));
 }
@@ -26,7 +26,7 @@ const getAllPets = (req, res) => {
 const getAddNewPet = (req, res) => {
     pet
       .find()
-      .then((pets) => res.render("pages/addNewPet", { pets }))
+      .then((result, err) => res.render("pages/addNewPet", { pets : result, err: err}))
       .catch((err) => console.log(err));
 }
 
@@ -35,7 +35,7 @@ const createPet = (req, res) => {
   newPet
     .save()
     .then(() => res.redirect("/home"))
-    .catch((err) => console.log(err));
+    .catch((err) => res.render('pages/addNewPet', {err: err.errors}));
 };
 
 const getFullPetCard = (req, res) => {
