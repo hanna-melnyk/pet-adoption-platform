@@ -6,6 +6,9 @@ const mongoose = require('mongoose');
 
 const app = express();
 
+app.use(express.static('public'));
+
+
 // Set the view engine to ejs
 app.set('view engine', 'ejs');
 
@@ -21,12 +24,14 @@ mongoose.connect(dbUri)
     .catch(err => console.error('MongoDB connection error:', err));
 
 
+app.use(express.json()); // for parsing application/json
+
 // use routes from config
 const routes = require('./config/routes');
 app.use(routes);
 
 const authRoutes = require('./config/authRoutes');
-app.use(authRoutes);
+app.use('/auth', authRoutes);
 
 
 app.listen(port, () => {

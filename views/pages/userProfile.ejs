@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <!-- Link to a CSS file here -->
+
+</head>
+<body>
+<div class="profile-container">
+    <img src="<%= user.userPhoto %>" alt="User photo" class="profile-photo">
+    <h1><%= user.name %></h1>
+    <h2>@<%= user.username %></h2>
+    <!-- User role -->
+    <p>Roles:</p>
+    <ul>
+        <% if(user.roles.includes('petSeller')) { %>
+            <li>Pet Seller</li>
+        <% } %>
+        <% if(user.roles.includes('petParent')) { %>
+            <li>Looking to Adopt a Pet</li>
+        <% } %>
+    </ul>
+    <% if(user.posts && user.posts.length) { %>
+        <div class="posts">
+            <% user.posts.forEach(post => { %>
+                <div class="post">
+                    <!-- Display post details -->
+                </div>
+            <% }); %>
+        </div>
+    <% } else { %>
+        <p>No posts to display.</p>
+    <% } %>
+
+    <a href="/edit-profile" class="edit-profile-button">Edit Profile</a>
+</div>
+</body>
+</html>
