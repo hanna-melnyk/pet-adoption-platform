@@ -1,5 +1,7 @@
 //public/js/script.js
 
+/* Registration submit --------------------------------------------------------------------------------------------------*/
+
 document.getElementById('register-button').addEventListener('click', function(e) {
     e.preventDefault(); // Prevent the default form submission
     var username = document.getElementById('register-username').value;
@@ -25,7 +27,7 @@ document.getElementById('register-button').addEventListener('click', function(e)
         });
 });
 
-/* Login --------------------------------------------------------------------------------------------------*/
+/* Login click--------------------------------------------------------------------------------------------------*/
 document.getElementById('login-button').addEventListener('click', function(event) {
     event.preventDefault();
 
@@ -39,11 +41,24 @@ document.getElementById('login-button').addEventListener('click', function(event
         },
         body: JSON.stringify({ usernameOrEmail, password }),
     })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Login failed'); // or more specific error based on response status
+            }
+            return response.json();
+        })
         .then(data => {
-            // Handle response
+            if (data.token) {
+                localStorage.setItem('token', data.token); // Save the token
+                window.location.href = '/'; // redirect to homepage
+            } else {
+                alert('Login failed: No token received');
+            }
         })
         .catch((error) => {
             console.error('Error:', error);
+            alert(error.message);
         });
 });
+
+
