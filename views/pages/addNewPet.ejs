@@ -15,9 +15,9 @@
            <div class="col-md-6 position-relative">
             <input type="text" name="name" placeholder="write a name of the pet" class="form-control" id="nameInput">
                 
-            <div class="invalid-tooltip">
-               Please enter the pet's name.
-            </div>   
+            <% if (err) { %>
+                <p><%= err['name'] %></p>
+              <% } %>  
         </div>
             <div class="col-md-3 position-relative">
             <select name="species" class="form-select" id="speciesSelect" required>
@@ -35,9 +35,11 @@
             </div>
             <div class="col-md-6 position-relative">
                <input type="text" name="age" placeholder="write an age of the pet" class="form-control" id="ageInput" required>
-               <div class="invalid-tooltip" for="ageInput">
-               Please enter the pet's age.
-            </div> 
+
+               <% if (err) { %>
+                <p><%= err['age'] %></p>
+              <% } %>
+               
             </div>
             <div class="col-md-6 position-relative">
                 <input type="text" name="color" placeholder="write a color of the pet" class="form-control">
