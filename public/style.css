@@ -2,20 +2,30 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  
+}
+
+:root {
+  --primary-color: #dc7d4d;
+  --secondary-color: #fff;
+  --text-color: #444444;
+  --secondary-text-color: #000;
 }
 
 ul {
   list-style-type: none;
 }
 
+a {
+  text-decoration: none;
+}
+
 .cards {
-    padding: 10px 5px;
+  padding: 10px 5px;
 }
 
 .card-img-top {
-  width: 200px; 
-  height: 200px; 
+  width: 200px;
+  height: 200px;
   object-fit: cover;
 }
 
@@ -24,9 +34,86 @@ ul {
   justify-content: center;
   align-items: center;
   gap: 10px;
-
 }
 .input-group-text {
   width: 80%;
   text-align: start;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 25px;
+  border-bottom: 3px solid var(--primary-color);
+  padding: 5px 10px;
+  background-image: url("../images/Pets&children.png");
+}
+
+.logo {
+  margin-right: 20px;
+}
+
+.auth-links {
+  display: flex;
+  gap: 20px;
+}
+
+.header-link {
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
+.welcome-page {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  padding: 30px 20px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.welcome-page h1 {
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  font-size: 28px;
+}
+
+.welcome {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+
+.item {
+  width: 45%;
+  margin-bottom: 10px;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+img {
+  border-radius: 30%;
+}
+
+
+.welcome-click {
+  font-weight: 700;
+  font-size: 28px;
+  margin-top: 20px;
+}
+
+.welcome-btn {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  padding: 10px;
+  width: 200px;
+  border: 2px solid #df6122;
+  border-radius: 25px;
+  margin-top: 20px;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: 700;
 }
