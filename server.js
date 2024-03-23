@@ -1,5 +1,8 @@
+//server.js
+
 require('dotenv').config();
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const app = express();
 app.use(express.static('public'));
@@ -7,7 +10,7 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
 app.use(express.json()); // for parsing application/json
-
+app.use(cookieParser()); // will allow to access req.cookies
 
 
 const port = process.env.PORT || 3000;
@@ -55,7 +58,7 @@ const routes = require('./config/routes');
 app.use(routes);
 
 const authRoutes = require('./config/authRoutes');
-app.use('/auth', authRoutes);
+app.use('/auth', authRoutes); // all of the routes in authRoutes.js go through /auth (for example "/auth/login"
 
 
 app.listen(port, () => {

@@ -2,21 +2,21 @@
 const jwt = require('jsonwebtoken');
 
 const jwtMiddleware = (req, res, next) => {
-    // Get the token from the header
-    const token = req.headers['authorization']?.split(' ')[1]; // Authorization: Bearer <token>
+
+    const token = req.cookies.token;
 
     if (!token) {
-        return res.status(403).send("A token is required for authentication");
+        return res.status(403).send("A token is required for authentication.");
     }
 
     try {
+        // Verify the token
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.user = decoded;
+        req.user = decoded; // Attach the decoded token to the request
+        next(); // Proceed to the next middleware/route handler
     } catch (err) {
         return res.status(401).send("Invalid Token");
     }
-
-    return next();
 };
 
 module.exports = jwtMiddleware;
