@@ -9,7 +9,10 @@ const jwtMiddleware = require('../middleware/jwtMiddleware');
 // Define routes (endpoints)
 router.get('/', viewController.getHome);
 router.get('/auth', viewController.getAuthPage);
-router.get('/profile',  jwtMiddleware, viewController.getUserProfile);
+
+
+
+router.get('/profile',  jwtMiddleware, userSettingsController.getUserProfile);
 
 
 
