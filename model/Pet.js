@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-// const moment = require('moment')
 
 const schema = mongoose.Schema
 
@@ -38,7 +37,10 @@ const petSchema = new schema(
 
     description: String,
 
-    photos: [String],
+    photos: {
+      type: [String],
+      default: [null],
+    },
 
     adoptionStatus: {
       type: String,
@@ -46,9 +48,17 @@ const petSchema = new schema(
       default: "available",
     },
 
-    adopter: {
+    owner: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
+    },
+
+    created_at: {
+      type: Date,
+      default: Date.now,
+      get: function (createdAt) {
+        return moment(createdAt).format("MMMM Do YYYY, h:mm:ss a");
+      },
     },
   },
   { timestamps: true }

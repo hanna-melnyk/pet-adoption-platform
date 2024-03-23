@@ -13,37 +13,82 @@
   <body>
      <%- include('header') -%>
     <main class="container">
-      <a href="/home/addNewPet">Add new pet</a>
 
       <!-- =============== Filter ========================= -->
       <section class="filter">
-        <h1>Search for a pet</h1>
+        <!-- <h1>Search for a pet</h1> -->
         <form action="/home" method="get" class="search-form">
-            <input type="text" name="search" placeholder="filter by species, color" class="input-group-text"/>
-            <button type="submit">Search</button>
+            <input type="text" name="search" placeholder="Search for a pet" class="input-group-text"/>
+            <button type="submit" class="search-btn">Search</button>
         </form>
       </section>
 
       <!--======================== Cards ====================== -->
       <section class="cards">
-        <ul class="row row-cols-1 row-cols-md-3 g-5">
+        <ul class="cards-list">
           <% for (let i = 0; i < pets.length; i++) {%>
-          <li class="col">
+          <li class="">
+            <% if (pets[i].photos && pets[i].photos.length > 0) { %>
             <img
-              src="<%= pets[i].photos[0] %>"
-              alt="cat image"
-              class="card-img-top"
+                src="/uploads/<%= pets[i].photos[0].split('\\').pop() %>"
+                alt="pet image"
+                style="width: 250px;"
+                class="card-img-top"
             />
+        <% } else { %>
+            <img
+                src="../../images/Pets&children.png"
+                alt="pet image"
+                style="width: 250px;"
+                class="card-img-top"
+            />
+              <% } %>
+           
             <div class="card-body">
+              <div class="card-list-li">
               <h3 class="card-title"><%= pets[i].name %></h3>
-              <p><%= pets[i].species %></p>
-              <p><%= pets[i].breed %></p>
-              <p><%= pets[i].age %></p>
-              <p><%= pets[i].color %></p>
-              <p><%= pets[i].gender %></p>
-              <p class="card-text"><%= pets[i].description.slice(0, 35) + '...' %></p>
-              <p><%= pets[i].adoptionStatus %></p>
-              <a href="/home/fullPetCards/<%= pets[i]._id %>">see more...</a>
+             
+              <p class="value"><%= pets[i].age %></p>     
+              
+              </div>
+              <div class="card-list-li">
+                 <div class="card-list-btn">
+                    <p class="value"><%= pets[i].breed %></p>
+                    <p class="property">breed</p>
+                  </div>
+                 <div class="card-list-btn">
+                    <p class="value"><%= pets[i].species %></p>
+                    <p class="property">species</p>
+                 </div>
+                 
+                  <div class="card-list-btn">
+                    <p class="value"><%= pets[i].gender %></p>
+                    <p class="property">gender</p>
+                  </div>
+                   <!-- <div class="card-list-btn">
+                    <p class="value"><%= pets[i].color %></p>
+                    <p class="property">color</p>
+                   </div> -->
+              </div>
+              <div class="description">
+                <!-- <p class="value">About</p> -->
+               <!-- <p class="card-text" class="property"><%= pets[i].description.slice(0, 70) + '...' %></p> -->
+              </div>
+               
+              <div class="card-list-li-bottom">
+                <div class="card-list-bottom">
+                  <p class="value"><%= pets[i].adoptionStatus %></p>
+                  <!-- <p class="property">adoption status</p> -->
+                </div>
+                <div class="card-list-bottom">
+                  <p class="value">price</p>
+                  
+                </div>
+              </div>
+              <div class="see-more">
+                <a href="/home/fullPetCards/<%= pets[i]._id %>" >see more...</a>
+              </div>
+              
             </div>
           </li>
           <% } %>
