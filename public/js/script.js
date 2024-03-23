@@ -9,6 +9,11 @@ document.getElementById('register-button').addEventListener('click', function(e)
     var password = document.getElementById('register-password').value;
     var confirmPassword = document.getElementById('register-confirm-password').value;
 
+
+    // Clear previous messages
+    document.getElementById('register-message').textContent = '';
+
+
     fetch('/auth/register', {
         method: 'POST',
         headers: {
@@ -16,14 +21,25 @@ document.getElementById('register-button').addEventListener('click', function(e)
         },
         body: JSON.stringify({ username, email, password, confirmPassword }),
     })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Registration failed. Please try again.'); // Adjust error message as needed
+            }
+            return response.json();
+        })
         .then(data => {
             console.log(data); // Process the response data
-            // Redirect or show a success message
+            // Display a success message
+            document.getElementById('register-message').textContent = 'Registration successful! Redirecting to homepage...';
+            // Optionally, redirect to the login page or home page after a delay
+            setTimeout(() => {
+                window.location.href = '/'; // redirect to homepage
+            }, 3000); // delay (to read the message)
         })
         .catch((error) => {
             console.error('Error:', error);
             // Show an error message
+            document.getElementById('register-message').textContent = error.message;
         });
 });
 
@@ -45,11 +61,12 @@ document.getElementById('login-button').addEventListener('click', function(event
             if (!response.ok) {
                 throw new Error('Login failed'); // or more specific error based on response status
             }
+
             return response.json();
         })
         .then(data => {
             if (data.token) {
-                localStorage.setItem('token', data.token); // Save the token
+                console.log(data.message); // Log the login success message
                 window.location.href = '/'; // redirect to homepage
             } else {
                 alert('Login failed: No token received');
@@ -62,3 +79,4 @@ document.getElementById('login-button').addEventListener('click', function(event
 });
 
 
+/*Logout click-----------------------------------------------------------------------*/
