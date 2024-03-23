@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 
-exports.getUserInfo = async (req, res) => {
+exports.getUserInfo = async (req, res) => { // return user information if the provided token is valid.
     try {
         // Use req.user._id, assuming jwtMiddleware adds a user object to req
         const user = await User.findById(req.user._id);
@@ -92,8 +92,21 @@ exports.login = async (req, res) => {
             { expiresIn: "24h" } // Token expires in 24 hours
         );
 
-        // Send the token to the client
-        res.send({
+        // Set the HttpOnly cookie
+        res.cookie('token', token, {
+            httpOnly: true,
+            // secure: process.env.NODE_ENV === 'production', // Use secure in production
+            sameSite: 'strict', // CSRF protection
+            maxAge: 24 * 60 * 60 * 1000, // 24 hours
+        });
+
+
+        // Logging for testing purposes
+        console.log(`User logged in: ${user.username} (${user.email}). Token: ${token}`);
+
+
+        // Send the token to the client in response body (for storing in localStorage)
+        res.status(200).send({
             message: "User logged in successfully.",
             token: token
         });
@@ -101,4 +114,14 @@ exports.login = async (req, res) => {
         console.error("Login error:", error); // Log any error that occurred during the process
         res.status(500).send("An error occurred during the login process.");
     }
+};
+
+
+exports.logout = (req, res) => {
+    res.cookie('token', '', {
+        httpOnly: true,
+        expires: new Date(0)
+    });
+    res.status(200).send({ message: "User logged out successfully." });
+    console.log("authController: User logged out successfully.");
 };

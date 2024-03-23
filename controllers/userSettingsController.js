@@ -2,6 +2,34 @@
 const bcrypt = require('bcryptjs');
 const User = require('../models/User'); // Assuming your model file is named User.js
 
+
+exports.getUserProfile = async (req, res) => {
+    try {
+        // Assuming req.user is populated from your authentication middleware (e.g., jwtMiddleware)
+        const userId = req.user._id;
+        const user = await User.findById(userId);
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found." });
+        }
+
+        // Return user information as JSON
+        res.json({
+            name: user.name,
+            userPhoto: user.userPhoto,
+            username: user.username,
+            roles: user.roles,
+            // Include any additional information as needed
+            posts: user.posts // 'posts' is a field in  User model
+        });
+    } catch (error) {
+        console.error('Error fetching user profile:', error);
+        res.status(500).json({ message: "An error occurred while fetching the user profile." });
+    }
+};
+
+
+
 exports.updateUserProfile = async (req, res) => {
     try {
         const userId = req.user._id; // Assuming authentication middleware adds user ID to req
