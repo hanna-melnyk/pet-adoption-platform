@@ -1,40 +1,25 @@
+<!-- views/pages/userProfile -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
-    <!-- Link to a CSS file here -->
-
+    <!-- Add your CSS file link here -->
 </head>
 <body>
 <div class="profile-container">
-    <img src="<%= user.userPhoto %>" alt="User photo" class="profile-photo">
-    <h1><%= user.name %></h1>
-    <h2>@<%= user.username %></h2>
-    <!-- User role -->
+    <img src="" alt="User photo" class="profile-photo">
+    <h1></h1>
+    <h2></h2>
+    <!-- User roles will be inserted here -->
     <p>Roles:</p>
-    <ul>
-        <% if(user.roles.includes('petSeller')) { %>
-            <li>Pet Seller</li>
-        <% } %>
-        <% if(user.roles.includes('petParent')) { %>
-            <li>Looking to Adopt a Pet</li>
-        <% } %>
-    </ul>
-    <% if(user.posts && user.posts.length) { %>
-        <div class="posts">
-            <% user.posts.forEach(post => { %>
-                <div class="post">
-                    <!-- Display post details -->
-                </div>
-            <% }); %>
-        </div>
-    <% } else { %>
-        <p>No posts to display.</p>
-    <% } %>
-
+    <ul id="roles-list"></ul>
+    <!-- User posts will be inserted here -->
+    <div class="posts"></div>
     <a href="/edit-profile" class="edit-profile-button">Edit Profile</a>
 </div>
+<script src="/js/profile.js"></script>
 </body>
 </html>
