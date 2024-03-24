@@ -11,16 +11,25 @@
     <title>Full pet card </title>
 </head>
 <body>
+  <%- include('header') -%>
      <div class="container">
         <a href="/home">Home</a>
 
         <div>
             <% if (pet) { %>
-                <img
-              src="<%= pet.photos[0] %>"
-              alt="cat image"
-              style="width: 500px;"
+                 <% if (pet.photos && pet.photos.length > 0) { %>
+            <img
+                src="/uploads/<%= pet.photos[0].split('\\').pop() %>"
+                alt="pet image"
+                style="width: 500px;"
             />
+        <% } else { %>
+            <img
+                src="../../images/Pets&children.png"
+                alt="pet image"
+                style="width: 150px;"
+            />
+              <% } %>
               <h3 class="card-title"><%= pet.name %></h3>
               <p><%= pet.species %></p>
               <p><%= pet.breed %></p>

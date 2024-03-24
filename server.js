@@ -33,6 +33,7 @@ app.listen(port, () => {
 });
 
 app.use(express.static(`${__dirname}/public`));
+app.use("/uploads", express.static("uploads"));
 app.use(express.urlencoded({ extended: true }));
 
 const getRoute = require("./config/routes");

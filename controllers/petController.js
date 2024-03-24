@@ -17,8 +17,9 @@ const getAllPets = (req, res) => {
     
       pet
         .find(filter)
-        .then((result) => {          
-          res.render("pages/home", { pets : result});
+        .sort({ created_at: -1 })
+        .then((result) => {
+          res.render("pages/home", { pets: result });
         })
         .catch((err) => console.log(err));
 }
@@ -26,16 +27,36 @@ const getAllPets = (req, res) => {
 const getAddNewPet = (req, res) => {
     pet
       .find()
-      .then((result, err) => res.render("pages/addNewPet", { pets : result, err: err}))
+      .then((result, err) =>
+        res.render("pages/addNewPet", { pets: result, err: err })
+      )
       .catch((err) => console.log(err));
 }
 
 const createPet = (req, res) => {
-  const newPet = new pet(req.body);
-  newPet
-    .save()
-    .then(() => res.redirect("/home"))
-    .catch((err) => res.render('pages/addNewPet', {err: err.errors}));
+  try {
+    
+    const photos = req.files ? req.files.map((file) => file.path) : [];
+
+    const newPet = new pet({
+      name: req.body.name,
+      species: req.body.species,
+      breed: req.body.breed,
+      age: req.body.age,
+      color: req.body.color,
+      gender: req.body.gender,
+      description: req.body.description,
+      photos: photos, 
+      adoptionStatus: req.body.adoptionStatus,
+    });
+
+    newPet
+      .save()
+      .then(() => res.redirect("/home"))
+      .catch((err) => res.render("pages/addNewPet", { err: err.errors }));
+  } catch (error) {
+    console.error( error);
+  }
 };
 
 const getFullPetCard = (req, res) => {
@@ -57,10 +78,33 @@ const getUpdatePet = (req, res) => {
 }
 
 const editPetCard = (req, res) => {
-    pet.findByIdAndUpdate(req.params.id, req.body)
-        .then((petId) => res.redirect(`/home/fullPetCards/${petId._id}`))
+  const updatedData = {
+    name: req.body.name,
+    species: req.body.species,
+    breed: req.body.breed,
+    age: req.body.age,
+    color: req.body.color,
+    gender: req.body.gender,
+    description: req.body.description,
+    adoptionStatus: req.body.adoptionStatus,
+  };
+
+  pet.findByIdAndUpdate(req.params.id, updatedData)
+        .then(() => res.redirect(`/home/fullPetCards/${req.params.id}`))
     .catch(err => console.log(err))
 }
+
+const editPetPhoto = (req, res) => {
+  const petId = req.params.id
+  console.log(petId)
+  const photos = req.files ? req.files.map((file) => file.path) : []
+  console.log(req.files)
+console.log(photos)
+  pet.findByIdAndUpdate(petId, { photos: photos })
+    .then(() => { res.redirect(`/home/fullPetCards/${petId}`) })
+  .catch(err => console.log(err))
+}
+
 
 module.exports = {
   getAllPets,
@@ -70,4 +114,5 @@ module.exports = {
   deletePet,
   getUpdatePet,
   editPetCard,
+  editPetPhoto,
 };

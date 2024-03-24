@@ -11,19 +11,27 @@
     <title>Edit pet card</title>
 </head>
 <body>
+  <%- include('header') -%>
      <div class="container">
         <a href="/home">Home</a>
           <h1>Update pet card</h1>
           <form action="/home/updatePetCard/<%= pet._id %>" method="post">
              <div>
-                <img
-              src="<%= pet.photos[0] %>"
-              alt="cat image"
-              style="width: 500px;"
+                <% if (pet.photos && pet.photos.length > 0) { %>
+            <img
+                src="/uploads/<%= pet.photos[0].split('\\').pop() %>"
+                alt="pet image"
+                style="width: 500px;"
             />
+        <% } else { %>
+            <img
+                src="../../images/Pets&children.png"
+                alt="pet image"
+                style="width: 150px;"
+            />
+              <% } %>
              </div>
-            <input type="text" name="photos[0]" value="<%= pet.photos[0] %>">
-            <input type="text" name="name" value="<%= pet.name %>">
+             <input type="text" name="name" value="<%= pet.name %>">
              <input type="text" name="species" value="<%= pet.species %>">
               <input type="text" name="breed" value="<%= pet.breed %>">
                 <input type="text" name="age" value="<%= pet.age %>">
@@ -33,6 +41,11 @@
                   <input type="text" name="adoptionStatus" value="<%= pet.adoptionStatus %>">
             
                <button class="btn">Submit</button>
+        </form>
+
+        <form action="/home/updatePetPhoto/<%= pet._id %>" method="post" enctype="multipart/form-data">
+          <input type="file" name="photos">
+          <button class="btn">Submit</button>
         </form>
 
      </div>
