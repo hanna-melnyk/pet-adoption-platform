@@ -12,4 +12,5 @@ exports.getHome = (req, res) => {
 
 
 exports.getAuthPage = (req, res) => {
-    res.render('pages/auth');
+    res.render('pages/auth')
+}

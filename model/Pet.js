@@ -12,7 +12,7 @@ const petSchema = new schema(
     species: {
       type: String,
       required: true,
-      enum: ["cats", "dogs", "parrots", "fish", "insects", "other pets"],
+      enum: ["cat", "dog", "parrot", "fish", "insect", "other pet"],
       index: true,
     },
 

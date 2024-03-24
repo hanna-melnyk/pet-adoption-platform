@@ -13,39 +13,63 @@
 <body>
   <%- include('header') -%>
      <div class="container">
-        <a href="/home">Home</a>
-          <h1>Update pet card</h1>
-          <form action="/home/updatePetCard/<%= pet._id %>" method="post">
+          <h1 class="new-pet">Update Pet Card</h1>
+          <form action="/home/updatePetCard/<%= pet._id %>" method="post" class="update-form">
              <div>
                 <% if (pet.photos && pet.photos.length > 0) { %>
             <img
                 src="/uploads/<%= pet.photos[0].split('\\').pop() %>"
                 alt="pet image"
-                style="width: 500px;"
+                style="width: 300px;"
+                 class="card-img-full"
             />
         <% } else { %>
             <img
                 src="../../images/Pets&children.png"
                 alt="pet image"
-                style="width: 150px;"
+                style="width: 300px;"
+                 class="card-img-full"
             />
               <% } %>
              </div>
-             <input type="text" name="name" value="<%= pet.name %>">
-             <input type="text" name="species" value="<%= pet.species %>">
-              <input type="text" name="breed" value="<%= pet.breed %>">
-                <input type="text" name="age" value="<%= pet.age %>">
-               <input type="text" name="color" value="<%= pet.color %>">
-                <input type="text" name="gender" value="<%= pet.gender %>">
-                 <input type="text" name="description" value="<%= pet.description %>">
-                  <input type="text" name="adoptionStatus" value="<%= pet.adoptionStatus %>">
-            
-               <button class="btn">Submit</button>
+             <div>
+            <input type="text" name="name" value="<%= pet.name %>" class="form-control input-group-text">
+             <!-- <input type="text" name="species" value="<%= pet.species %>" class="form-select input-group-text"> -->
+              <select name="species" class="form-select input-group-text" id="speciesSelect" required>
+                <option selected disabled>select the type of pet</option>
+                <option value="cat">cat</option>
+                <option value="dog">dog</option>
+                <option value="parrot">parrot</option>
+                <option value="fish">fish</option>
+                <option value="insect">insect</option>
+                <option value="other pet">other pet</option>
+            </select>
+             <input type="text" name="breed" value="<%= pet.breed %>" class="form-control input-group-text">
+                <input type="text" name="age" value="<%= pet.age %>" class="form-control input-group-text">
+               <input type="text" name="color" value="<%= pet.color %>" class="form-control input-group-text">
+                <!-- <input type="text" name="gender" value="<%= pet.gender %>" class="form-select input-group-text"> -->
+                 <select name="gender" class="form-select input-group-text" id="genderSelect" required>
+                <option selected disabled>select the gender of pet</option> 
+                <option value="male">male</option>
+                <option value="female">female</option>
+                <option value="unknown">unknown</option>
+            </select>
+                <textarea name="description" class="textarea" cols="30" rows="5" maxlength="300"><%= pet.description %></textarea>
+                 <!-- <input type="text" name="adoptionStatus" value="<%= pet.adoptionStatus %>" class="form-select input-group-text"> -->
+                <select name="adoptionStatus" class="form-select input-group-text " id="adoptionStatus" required>
+                <option selected disabled>select the adoption status of pet</option> 
+                <option value="available">available</option>
+                <option value="pending">pending</option>
+                <option value="adopted">adopted</option>
+            </select>
+               <button class="search-btn">Submit</button>
+             </div>
+             
         </form>
 
         <form action="/home/updatePetPhoto/<%= pet._id %>" method="post" enctype="multipart/form-data">
-          <input type="file" name="photos">
-          <button class="btn">Submit</button>
+          <input type="file" name="photos" class="form-control input-group-text">
+          <button class="search-btn">Submit</button>
         </form>
 
      </div>
