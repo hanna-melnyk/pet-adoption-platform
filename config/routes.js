@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const viewController = require('../controllers/viewController');
-const userSettingsController = require('../controllers/userSettingsController');
+const userController = require('../controllers/userController');
 const jwtMiddleware = require('../middleware/jwtMiddleware');
 
 
@@ -12,7 +12,7 @@ router.get('/auth', viewController.getAuthPage);
 
 
 
-router.get('/profile',  jwtMiddleware, userSettingsController.getUserProfile);
+router.get('/profile',  jwtMiddleware, userController.getUser);
 
 
 

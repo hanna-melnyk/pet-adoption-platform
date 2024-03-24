@@ -1,6 +1,8 @@
 // models/User.js
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const Pet = require('./Pet');
+
 
 const UserSchema = new mongoose.Schema({
     name: { type: String, required: true },
@@ -8,7 +10,8 @@ const UserSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     userPhoto: { type: String }, // URL to the user's photo
-    roles: [{ type: String, enum: ['petOwner', 'petParent'] }], // User's role (can have multiple)
+    roles: [{ type: String, enum: ['petSeller', 'petParent'] }], // User's role (can have multiple)
+    petPosts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Pet' }], // Reference to user pet posts
 });
 
 // Pre-save hook to hash password before saving a new user

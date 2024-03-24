@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="55154805-4f61-4e47-bef5-0a9026d8a0e7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middleware/jwtMiddleware.js" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/jwtMiddleware.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/authRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/authRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/userSettingsController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/userController.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +77,8 @@
       <workItem from="1711191173500" duration="12616000" />
       <workItem from="1711209499402" duration="1409000" />
       <workItem from="1711217164541" duration="5734000" />
-      <workItem from="1711225208286" duration="6294000" />
+      <workItem from="1711225208286" duration="6419000" />
+      <workItem from="1711289009358" duration="697000" />
     </task>
     <servers />
   </component>

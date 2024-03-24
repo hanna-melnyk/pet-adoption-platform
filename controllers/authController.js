@@ -3,26 +3,6 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 
-exports.getUserInfo = async (req, res) => { // return user information if the provided token is valid.
-    try {
-        // Use req.user._id, assuming jwtMiddleware adds a user object to req
-        const user = await User.findById(req.user._id);
-        if (!user) {
-            return res.status(404).send("User not found.");
-        }
-        // Send back a subset of user details; avoid sensitive info
-        res.json({
-            name: user.name,
-            email: user.email,
-            username: user.username,
-            roles: user.roles
-        });
-    } catch (error) {
-        console.error("Error fetching user information:", error);
-        res.status(500).send("An error occurred while fetching user information.");
-    }
-};
-
 
 
 exports.register = async (req, res) => {

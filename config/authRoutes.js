@@ -6,7 +6,7 @@ const router = express.Router();
 // to import
 
 const authController = require('../controllers/authController');
-const userSettingsController = require('../controllers/userSettingsController');
+const userSettingsController = require('../controllers/userController');
 const jwtMiddleware = require('../middleware/jwtMiddleware');
 const sessionController = require('../controllers/sessionController');
 

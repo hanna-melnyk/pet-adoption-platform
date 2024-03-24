@@ -1,9 +1,9 @@
-// controllers/userSettingsController.js
+// controllers/userController.js
 const bcrypt = require('bcryptjs');
 const User = require('../models/User'); // Assuming your model file is named User.js
 
 
-exports.getUserProfile = async (req, res) => {
+exports.getUser = async (req, res) => {
     try {
         // Assuming req.user is populated from your authentication middleware (e.g., jwtMiddleware)
         const userId = req.user._id;
@@ -13,18 +13,13 @@ exports.getUserProfile = async (req, res) => {
             return res.status(404).json({ message: "User not found." });
         }
 
-        // Return user information as JSON
-        res.json({
-            name: user.name,
-            userPhoto: user.userPhoto,
-            username: user.username,
-            roles: user.roles,
-            // Include any additional information as needed
-            posts: user.posts // 'posts' is a field in  User model
+        // Render the userProfile page, passing in user data
+        res.render('pages/userProfile', {
+            user: user // This object contains all user details
         });
     } catch (error) {
         console.error('Error fetching user profile:', error);
-        res.status(500).json({ message: "An error occurred while fetching the user profile." });
+        res.status(500).render('pages/error', { message: "An error occurred while fetching the user profile." });
     }
 };
 
