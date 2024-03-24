@@ -1,5 +1,9 @@
 //controllers/viewController.js
 
+const User = require('../models/User');
+
+
+
 // Define the home page route handler
 
 exports.getHome = (req, res) => {
@@ -8,6 +12,4 @@ exports.getHome = (req, res) => {
 
 
 exports.getAuthPage = (req, res) => {
-    res.render('pages/auth'); // Make sure you have an auth.ejs file in your views directory
-};
-
+    res.render('pages/auth');

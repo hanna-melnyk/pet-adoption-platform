@@ -1,3 +1,5 @@
+<!-- views/pages/index.js -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,39 +10,20 @@
     />
     <link rel="stylesheet" href="../../style.css" />
     <title>Pet Adoption Platform</title>
-  </head>
+</head>
+<body>
+<h1>Welcome to our Pet Adoption Platform</h1>
+<ul>
+    <li> <a href="/auth">Login or register</a> </li>
+    <li id="logout-button"> <a href="#" onclick="logout()">Logout</a> </li>
+    <li> <a href="/profile">User</a></li>
+</ul>
 
-  <body>
-    <div class="container welcome-page">
-      <h1>Adopt or rehome your amazing pet!</h1>
-      <div class="welcome">
-        <!-- <div class="item">
-          <img src="../../images/6.png" alt="dog"/>
-        </div> -->
-        <!-- <div class="item">
-          <img
-            src="../../images/dog.png"
-            alt="pets&children"
-            width="450"
-          />
-        </div> -->
-        <p class="item">
-          Find your favorite pet and true friend using our application!
-        </p>
 
-        <p class="item">
-          Find a loving home for your pet! By posting information on our
-          platform, you will gain access to a wide audience of potential
-          adoptive parents who are looking for a new friend!
-        </p>
-        <p class="welcome-click">Your new best friend is just a click away!</p>
-        
-      </div>
+<script src="/js/authStatus.js"></script> <!-- Setting status -->
+<script>
 
-      
-      <a href="/auth">
-        <button class="welcome-btn">logIn or signUp</button>
-      </a>
-    </div>
-  </body>
+</script>
+
+</body>
 </html>
