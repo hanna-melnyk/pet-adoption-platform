@@ -1,5 +1,7 @@
 // public/js/authStatus.js
 
+
+/*Handling thw user session status---------------------------------------------------------------------*/
 document.addEventListener('DOMContentLoaded', () => {
     fetch('/auth/session-status', {
         credentials: 'include'
@@ -8,10 +10,14 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             console.log('Session status:', data); //for testing purposes
             const logoutButton = document.getElementById('logout-button');
-            if (data.isLoggedIn) {
+            const authButton = document.getElementById('auth-button');
+            if (data.isLoggedIn) { //If user is logged in:
                 logoutButton.style.display = 'block'; // Show logout button
+                authButton.style.display = 'none'; // Hide auth button
             } else {
+                authButton.style.display = 'block'; // Show auth button
                 logoutButton.style.display = 'none'; // Hide logout button
+
             }
             console.log("isLoggedIn: ", data.isLoggedIn);
         })
@@ -20,6 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 });
 
+
+/*Logout--------------------------------------------------------------------------------------------*/
 function logout() {
     console.log("authController logout() : Attempting to log out...");
     fetch('/auth/logout', {

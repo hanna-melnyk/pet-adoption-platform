@@ -10,16 +10,32 @@
 </head>
 <body>
 <div class="profile-container">
-    <img src="" alt="User photo" class="profile-photo">
-    <h1></h1>
-    <h2></h2>
-    <!-- User roles will be inserted here -->
+    <img src="<%= user.userPhoto || 'path/to/default/image' %>" alt="User photo" class="profile-photo">
+    <h1><%= user.name %></h1>
+    <h2>@<%= user.username %></h2>
     <p>Roles:</p>
-    <ul id="roles-list"></ul>
-    <!-- User posts will be inserted here -->
-    <div class="posts"></div>
-    <a href="/edit-profile" class="edit-profile-button">Edit Profile</a>
+    <ul>
+        <% user.roles.forEach(function(role) { %>
+            <li><%= role %></li>
+        <% }); %>
+    </ul>
+    <!-- User petPosts will be inserted here -->
+    <div class="posts">
+        <% if (user.petPosts && user.petPosts.length) { %>
+            <% user.petPosts.forEach(function(post) { %>
+                <div class="post">
+                    <h3><%= post.name %></h3>
+                    <p>Species: <%= post.species %></p>
+                    <p>Age: <%= post.age %></p>
+                    <!-- Add more details as needed -->
+                </div>
+            <% }); %>
+        <% } else { %>
+            <p>No pet posts to display.</p>
+        <% } %>
+    </div>
+    <a href="/userEdit" class="edit-profile-button">Edit Profile</a>
 </div>
-<script src="/js/profile.js"></script>
+
 </body>
 </html>

@@ -40,9 +40,11 @@ a {
 .header-link {
   margin-right: 20px;
 }
-.auth-links {
+.auth-links a {
   display: flex;
+  color: var(--secondary-color);
   gap: 20px;
+
 }
 
 .header-link {

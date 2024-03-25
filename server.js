@@ -19,9 +19,26 @@ const port = process.env.PORT || 3000;
 const username = process.env.DB_USERNAME;
 const password = process.env.DB_PASSWORD;
 const dbUriTemplate = process.env.DB_URI;
-const dbUri = dbUriTemplate.replace('<username>', username).replace('<password>', password);
 
 
+// Construct URI for testing
+const testUsername = process.env.DB_TEST_USERNAME;
+const testPassword = process.env.DB_TEST_PASSWORD;
+const dbUriTestTemplate = process.env.DB_URI_TEST;
+
+// Choose the correct MongoDB URI based on NODE_ENV
+let dbUri;
+if (process.env.NODE_ENV === 'test') {
+    const testUsername = process.env.DB_TEST_USERNAME;
+    const testPassword = process.env.DB_TEST_PASSWORD;
+    const dbUriTestTemplate = process.env.DB_URI_TEST;
+    dbUri = dbUriTestTemplate.replace('<username>', testUsername).replace('<password>', testPassword);
+} else {
+    const username = process.env.DB_USERNAME;
+    const password = process.env.DB_PASSWORD;
+    const dbUriTemplate = process.env.DB_URI;
+    dbUri = dbUriTemplate.replace('<username>', username).replace('<password>', password);
+}
 
 
 mongoose.connect(dbUri)
@@ -61,22 +78,23 @@ const authRoutes = require('./config/authRoutes');
 app.use('/auth', authRoutes); // all of the routes in authRoutes.js go through /auth (for example "/auth/login"
 
 
+/* check the NODE_ENV environment variable, and if it's not set to 'test', it will start the server.*/
 
-app.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}`);
-});
+if (process.env.NODE_ENV !== 'test') {
+    app.listen(port, () => console.log(`Server running on http://localhost:${port}`)); // updated for tests
+}
 
-app.use(express.static(`${__dirname}/public`));
+
+//app.use(express.static(`${__dirname}/public`));
 app.use("/uploads", express.static("uploads"));
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-const getRoute = require("./config/routes");
-const petRoute = require("./config/petRoutes");
 
-app.use("/", getRoute);
-app.use('/home', petRoute)
+const petRoutes = require("./config/petRoutes");
+app.use('/', petRoutes)
 
 
 
+/*Export app from server.js or testing purposes*/
 
-
+module.exports = app;

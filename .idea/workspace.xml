@@ -5,12 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="55154805-4f61-4e47-bef5-0a9026d8a0e7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_test/createPet.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/petPostService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/petService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/pages/success.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/pages/userEdit.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middleware/jwtMiddleware.js" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/jwtMiddleware.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/authRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/authRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/petRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/petRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/petController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/petController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/userController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/userController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/viewController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/viewController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middlewares/upload.js" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/upload.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Pet.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Pet.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/Pet.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/User.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/authStatus.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/authStatus.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/profile.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/pages/addNewPet.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/pages/addNewPet.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/pages/editPetCard.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/pages/editPetCard.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/pages/fullPetCards.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/pages/fullPetCards.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/pages/header.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/pages/header.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/pages/home.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/pages/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/pages/index.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/pages/userProfile.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/pages/userProfile.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +82,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\knowl\IdeaProjects\pet-adoption-project\middleware" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -79,7 +107,10 @@
       <workItem from="1711191173500" duration="12616000" />
       <workItem from="1711209499402" duration="1409000" />
       <workItem from="1711217164541" duration="5734000" />
-      <workItem from="1711225208286" duration="6294000" />
+      <workItem from="1711225208286" duration="6419000" />
+      <workItem from="1711289009358" duration="8538000" />
+      <workItem from="1711304405135" duration="13278000" />
+      <workItem from="1711362821618" duration="19832000" />
     </task>
     <servers />
   </component>

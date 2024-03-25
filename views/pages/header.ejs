@@ -1,3 +1,4 @@
+<!-- views/pages/header.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,15 +11,16 @@
         
         <div class="logo">
             <img src="../../images/Logo.png" alt="logo" width="100">
-             <a href="/home" class="header-link">Home</a>
-             <a href="/home/addNewPet" class="header-link">Add new pet</a>
+             <a href="/" class="header-link">Home</a>
+             <a href="/addNewPet" class="header-link">Add new pet</a>
         </div>
    
     <div class="auth-links">
-        <a href="#" class="header-link">Welcome User</a>
-        <a href="/auth" class="header-link">Log out</a>
-        
+            <a id="auth-button" href="/auth">Login or register</a>
+            <a id="logout-button" href="#" onclick="logout()">Logout</a>
+            <a href="/profile">User</a>
     </div>
     </header>
 </body>
+<script src="/js/authStatus.js"></script> <!-- Setting status -->
 </html>
