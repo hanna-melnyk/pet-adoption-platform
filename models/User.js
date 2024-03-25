@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const Pet = require('./Pet');
 
-
+/*User schema-----------------------------------------------------------------------------------------*/
 const UserSchema = new mongoose.Schema({
     name: { type: String, required: true },
     username: { type: String, required: true, unique: true },
@@ -13,6 +13,7 @@ const UserSchema = new mongoose.Schema({
     roles: [{ type: String, enum: ['petSeller', 'petParent'] }], // User's role (can have multiple)
     petPosts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Pet' }], // Reference to user pet posts
 });
+
 
 // Pre-save hook to hash password before saving a new user
 UserSchema.pre('save', async function(next) {

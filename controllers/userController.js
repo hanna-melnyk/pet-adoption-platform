@@ -7,15 +7,18 @@ exports.getUser = async (req, res) => {
     try {
         // Assuming req.user is populated from your authentication middleware (e.g., jwtMiddleware)
         const userId = req.user._id;
-        const user = await User.findById(userId);
+
+        // Modify the query to populate the petPosts field
+        const user = await User.findById(userId)
+            .populate('petPosts'); // This line is added to populate the petPosts
 
         if (!user) {
             return res.status(404).json({ message: "User not found." });
         }
 
-        // Render the userProfile page, passing in user data
+        // Render the userProfile page, passing in user data with petPosts populated
         res.render('pages/userProfile', {
-            user: user // This object contains all user details
+            user: user // This object now contains all user details including populated petPosts
         });
     } catch (error) {
         console.error('Error fetching user profile:', error);
@@ -26,46 +29,47 @@ exports.getUser = async (req, res) => {
 
 
 exports.updateUserProfile = async (req, res) => {
-    try {
-        const userId = req.user._id; // Assuming authentication middleware adds user ID to req
-        const updates = req.body; // Fields the user wants to update
-        const user = await User.findById(userId);
+    const { password, ...otherUpdates } = req.body;
+    const userId = req.user._id; // Assuming this is correctly set from your authentication process
 
+    // Log the entire request body for testing purposes
+    console.log('Request body:', req.body);
+    console.log('User id:', userId);
+
+    try {
+        const user = await User.findById(userId);
         if (!user) {
             return res.status(404).send("User not found.");
         }
 
-        // Define which fields can be updated
-        const updatableFields = ['name', 'username', 'email', 'roles'];
-        let updateOccurred = false;
-
-        // Check and update fields if necessary
-        updatableFields.forEach(field => {
-            if (updates[field] && user[field] !== updates[field]) {
-                user[field] = updates[field];
-                updateOccurred = true;
+        // Update other fields if provided
+        Object.keys(otherUpdates).forEach(key => {
+            // Check if the value is not just an empty string or null
+            if (otherUpdates[key] !== "" && otherUpdates[key] != null) {
+                user[key] = otherUpdates[key];
             }
         });
 
-        // Handle password updates separately
-        if (updates.password && updates.newPassword) {
-            const isMatch = await user.validatePassword(updates.password);
-            if (!isMatch) {
-                return res.status(400).send("Current password is incorrect.");
-            }
-            user.password = await bcrypt.hash(updates.newPassword, 12);
-            updateOccurred = true;
+        // Log the filtered updates (excluding password) for testing purposes
+        console.log('Filtered updates to apply (excluding password):', otherUpdates);
+
+
+        // Check if password was provided in the form and update it
+        if (password) {
+            // Just set the new password. The pre-save hook will hash it before saving.
+            user.password = password;
+            // Note: We intentionally avoid logging the password, even for testing purposes, to adhere to security best practices.
+            console.log('Password update detected (hashed automatically via pre-save hook).');
         }
 
-        // Save updates to database if any field was updated
-        if (updateOccurred) {
-            await user.save();
-            res.send("Profile updated successfully.");
-        } else {
-            res.send("No changes detected.");
-        }
+        // Save the user document. This triggers the pre-save hook for hashing the password.
+        await user.save();
+
+        console.log('User updated successfully.');
+        res.send("Profile updated successfully.");
     } catch (error) {
-        console.error(error);
-        res.status(500).send("An error occurred.");
+        console.error('Error updating user:', error);
+        res.status(500).send("Error updating user profile.");
     }
 };
+

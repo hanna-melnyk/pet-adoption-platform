@@ -13,7 +13,7 @@
 <body>
   <%- include('header') -%>
      <div class="container">
-        <a href="/home">Home</a>
+        <a href="/">Home</a>
 
         <div>
             <% if (pet) { %>
@@ -43,9 +43,9 @@
             <% } %>
         </div>
 
-        <form action="/home/delete-pet/<%= pet.id %>" method="post">
+        <form action="/delete-pet/<%= pet.id %>" method="post">
             <button>Delete</button>
-            <a href="/home/update-petCard/<%= pet.id %>">Edit</a>
+            <a href="/update-petCard/<%= pet.id %>">Edit</a>
         </form>
      </div>
     

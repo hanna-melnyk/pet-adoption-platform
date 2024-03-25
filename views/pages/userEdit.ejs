@@ -1,0 +1,37 @@
+<!-- pages/userEdit.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+</head>
+<body>
+<h1>Edit Profile</h1>
+<form action="/userEdit" method="POST">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" placeholder="Current: <%= user.name %>" >
+
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" placeholder="Current: <%= user.username %>" >
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="Current: <%= user.email %>" >
+
+    <label for="password">Password (leave blank to keep the same):</label>
+    <input type="password" id="password" name="password" placeholder="New Password">
+
+    <label for="userPhoto">Photo URL:</label>
+    <input type="url" id="userPhoto" name="userPhoto" placeholder="Current: <%= user.userPhoto %>">
+
+    <label for="roles">Role:</label>
+    <select id="roles" name="roles" multiple>
+        <option value="petSeller" <%= user.roles.includes('petSeller') ? 'selected' : '' %>>Pet Seller</option>
+        <option value="petParent" <%= user.roles.includes('petParent') ? 'selected' : '' %>>Pet Parent</option>
+    </select>
+
+    <button type="submit">Submit Changes</button>
+</form>
+</body>
+</html>

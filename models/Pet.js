@@ -51,13 +51,7 @@ const petSchema = new mongoose.Schema(
             ref: "User",
         },
 
-        created_at: {
-            type: Date,
-            default: Date.now,
-            get: function (createdAt) {
-                return moment(createdAt).format("MMMM Do YYYY, h:mm:ss a");
-            },
-        },
+        /*deleted created_at field because mongoose has built-in timestamps*/
     },
     { timestamps: true }
 );
